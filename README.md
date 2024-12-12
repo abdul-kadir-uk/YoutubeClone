@@ -30,15 +30,15 @@ Ensure you have the following installed on your system:
 
 ## Tecnologies Used
 ### Frontend 
-**React.js + vite**:- For building a dynamic user interface and faster development.
-**React Router**:- For routing.
-**Tailwind CSS**:- for styling.
+- **React.js + vite**:- For building a dynamic user interface and faster development.
+- **React Router**:- For routing.
+- **Tailwind CSS**:- for styling.
 
 ### Backend
-**Node.js**:- Server-side runtime.
-**Express.js**:- Framework for building RESTful APIs.
-**MongoDB**:- Database for storing  user, channel, and video data.
-**Mongoose**: ODM for defining and interacting with MongoDB schemas.
+- **Node.js**:- Server-side runtime.
+- **Express.js**:- Framework for building RESTful APIs.
+- **MongoDB**:- Database for storing  user, channel, and video data.
+- **Mongoose**: ODM for defining and interacting with MongoDB schemas.
 
 ### ***Redux***:- For global state management.
 
