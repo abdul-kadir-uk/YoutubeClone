@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import SearchVideos from "./Searchvideos";
+import SearchVideos from "./SearchVideos";
 // Search page component
 const Search = () => {
   //  redux state for sidebar visibility 
