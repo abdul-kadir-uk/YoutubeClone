@@ -36,3 +36,7 @@ app.use('/channel', Channel_routes);
 app.use('/video', video_routes);
 app.use('/search', search_routes);
 
+app.get('/', (req, res) => {
+  res.send('Backend is live!');
+});
+
