@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { AiOutlineLike } from "react-icons/ai";
 import { BiDislike, BiSolidDislike } from "react-icons/bi";
 import { useNavigate } from 'react-router-dom';
+import config from '../config';
 
 const Comments = ({ id }) => {
   // state for get comments 
@@ -27,7 +28,7 @@ const Comments = ({ id }) => {
   // get Comments
   const getComments = async () => {
     try {
-      const response = await axios.get(`http://localhost:1000/video/${id}/comments`);
+      const response = await axios.get(`${config.URL}/video/${id}/comments`);
       if (response.status === 200) {
         const sortedComments = response.data.comments.sort(
           (a, b) => new Date(b.timeStamp) - new Date(a.timeStamp)
@@ -52,7 +53,7 @@ const Comments = ({ id }) => {
     try {
       // axios post request for add comment
       const response = await axios.post(
-        `http://localhost:1000/video/${id}/comments`,
+        `${config.URL}/video/${id}/comments`,
         {
           commentText: newComment,
           likes: 0,
@@ -83,7 +84,7 @@ const Comments = ({ id }) => {
     try {
       // axios post put request for update comment
       const response = await axios.put(
-        `http://localhost:1000/video/${id}/comments`,
+        `${config.URL}/video/${id}/comments`,
         {
           commentId: commentId,
           updatedText: editCommentText,
@@ -110,7 +111,7 @@ const Comments = ({ id }) => {
   const handleDeleteComment = async (commentId) => {
     try {
       // axios delete request to delete comment
-      const response = await axios.delete(`http://localhost:1000/video/${id}/comments`, {
+      const response = await axios.delete(`${config.URL}/video/${id}/comments`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -134,7 +135,7 @@ const Comments = ({ id }) => {
     }
     try {
       // axios put request for update likes
-      const response = await axios.put(`http://localhost:1000/video/${id}/comments/likes`, {
+      const response = await axios.put(`${config.URL}/video/${id}/comments/likes`, {
         commentId: commentId
       }, {
         headers: {
@@ -160,7 +161,7 @@ const Comments = ({ id }) => {
     }
     try {
       // axios put request for updates dislikes
-      const response = await axios.put(`http://localhost:1000/video/${id}/comments/dislikes`, {
+      const response = await axios.put(`${config.URL}/video/${id}/comments/dislikes`, {
         commentId: commentId
       }, {
         headers: {

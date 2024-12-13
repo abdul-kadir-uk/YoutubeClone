@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import config from "../config";
 
 
 const UploadVideo = ({ isEditing = false }) => {
@@ -66,8 +67,8 @@ const UploadVideo = ({ isEditing = false }) => {
       // check request method 
       const Method = isEditing ? "put" : "post";
       // check endpoint 
-      const Endpoint = isEditing ? `http://localhost:1000/video/updatevideo/${id}` :
-        `http://localhost:1000/video/uploadvideo/${id}`
+      const Endpoint = isEditing ? `${config.URL}/video/updatevideo/${id}` :
+        `${config.URL}/video/uploadvideo/${id}`
       // axios put/post request for updating and creating video 
       const response = await axios[Method](Endpoint,
         {
@@ -105,7 +106,7 @@ const UploadVideo = ({ isEditing = false }) => {
         // get token from local storage 
         const token = localStorage.getItem('token');
         try {
-          const response = await axios.get(`http://localhost:1000/video/getvideo/${id}`, {
+          const response = await axios.get(`${config.URL}/video/getvideo/${id}`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },

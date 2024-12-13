@@ -12,6 +12,7 @@ import axios from "axios";
 import moment from "moment";
 import { useDispatch } from "react-redux";
 import { setCategory } from "../redux/similarVideosSlice";
+import config from "../config";
 
 const Videopage = () => {
   // get video id from url parameters 
@@ -65,7 +66,7 @@ const Videopage = () => {
   const getVideo = async () => {
     try {
       // axios get request for getting video data
-      const response = await axios.get(`http://localhost:1000/video/${id}`);
+      const response = await axios.get(`${config.URL}/video/${id}`);
       if (response.status === 200) {
         const videoData = response.data.video;
         setVideoChannelId(videoData.channelId);
@@ -82,7 +83,7 @@ const Videopage = () => {
     try {
       // axios get request for getting video by category
       const response = await axios.get(
-        `http://localhost:1000/video/category/${category}`
+        `${config.URL}/video/category/${category}`
       );
       if (response.status === 200) {
         setRelatedVideos(response.data);
@@ -117,7 +118,7 @@ const Videopage = () => {
       };
       // axios put request for update likes 
       const response = await axios.put(
-        `http://localhost:1000/video/${id}/likes`,
+        `${config.URL}/video/${id}/likes`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -142,7 +143,7 @@ const Videopage = () => {
       };
       //  axios put request for updates dislikes
       const response = await axios.put(
-        `http://localhost:1000/video/${id}/dislikes`,
+        `${config.URL}/video/${id}/dislikes`,
         {},
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -163,7 +164,7 @@ const Videopage = () => {
     if (!token) return;
     // axios get request for getting video states 
     try {
-      const response = await axios.get(`http://localhost:1000/video/${id}/videostates`, {
+      const response = await axios.get(`${config.URL}/video/${id}/videostates`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -191,7 +192,7 @@ const Videopage = () => {
   const UpdateViews = async () => {
     try {
       // axios put request for update views 
-      await axios.put(`http://localhost:1000/video/${id}/views`);
+      await axios.put(`${config.URL}/video/${id}/views`);
 
     } catch (error) {
       console.error(error);
@@ -227,7 +228,7 @@ const Videopage = () => {
   const channelDetails = async () => {
     try {
       // axios get request for getting channel data 
-      const response = await axios.get(`http://localhost:1000/channel/${videoChannelId}`)
+      const response = await axios.get(`${config.URL}/channel/${videoChannelId}`)
       const data = response.data;
       setChannelData({
         channelName: data.ChannelName,
@@ -251,7 +252,7 @@ const Videopage = () => {
     if (!token || !videoChannelId) return;
     try {
       // axios get request for getting user details 
-      const response = await axios.get(`http://localhost:1000/user/`, {
+      const response = await axios.get(`${config.URL}/user/`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -275,7 +276,7 @@ const Videopage = () => {
         return
       }
       // axios put request for update subscription
-      const response = await axios.put(`http://localhost:1000/user/subscriptions/${videoChannelId}`, {}, {
+      const response = await axios.put(`${config.URL}/user/subscriptions/${videoChannelId}`, {}, {
         headers: {
           Authorization: `Bearer ${token}`
         }

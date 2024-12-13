@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import config from "../config";
 
 const Signin = () => {
   // for navigation 
@@ -24,7 +25,7 @@ const Signin = () => {
     };
     try {
       // axios post request for signin
-      const response = await axios.post('http://localhost:1000/signin', user_data);
+      const response = await axios.post(`${config.URL}/signin`, user_data);
       // take the token 
       const { token } = response.data;
       // save to local storage 

@@ -31,6 +31,7 @@ import axios from 'axios';
 import { logout } from '../redux/authSlice';
 import { setChannelID } from '../redux/statesSlice';
 import { setUserID } from '../redux/statesSlice';
+import config from '../config';
 
 
 const Header = () => {
@@ -62,7 +63,7 @@ const Header = () => {
   const getUserDetails = async () => {
     try {
       if (!token) return;
-      const response = await axios.get("http://localhost:1000/user/", {
+      const response = await axios.get(`${config.URL}/user/`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

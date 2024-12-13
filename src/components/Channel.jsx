@@ -4,6 +4,7 @@ import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
 import moment from "moment";
 import { IoMdMore } from "react-icons/io";
+import config from "../config";
 
 const Channel = () => {
   // Redux states for sidebar and user channel ID
@@ -37,7 +38,7 @@ const Channel = () => {
   // get channel data from the backend
   const getChannelData = async () => {
     try {
-      const response = await axios.get(`http://localhost:1000/channel/${id}`);
+      const response = await axios.get(`${config.URL}/channel/${id}`);
       const data = response.data;
       setChannelData({
         name: data.ChannelName,
@@ -57,7 +58,7 @@ const Channel = () => {
       // if channel id not found return it
       if (!id) return;
       const response = await axios.get(
-        `http://localhost:1000/video/getvideos/${id}`,
+        `${config.URL}/video/getvideos/${id}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -86,7 +87,7 @@ const Channel = () => {
   const handleDelete = async (videoID) => {
     try {
       const response = await axios.delete(
-        `http://localhost:1000/video/deletevideo/${videoID}`,
+        `${config.URL}/video/deletevideo/${videoID}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -118,7 +119,7 @@ const Channel = () => {
   const getUserDetail = async () => {
     if (!token || !id) return;
     try {
-      const response = await axios.get(`http://localhost:1000/user/`, {
+      const response = await axios.get(`${config.URL}/user/`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -140,7 +141,7 @@ const Channel = () => {
         return;
       }
       const response = await axios.put(
-        `http://localhost:1000/user/subscriptions/${id}`,
+        `${config.URL}/user/subscriptions/${id}`,
         {},
         {
           headers: {

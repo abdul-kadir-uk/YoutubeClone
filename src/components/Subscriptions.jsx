@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import axios from 'axios';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import config from '../config';
 
 const Subscriptions = () => {
   // redux state for subscription 
@@ -19,7 +20,7 @@ const Subscriptions = () => {
       // if user not signin 
       if (!token) return;
       // axios get request for getting channels 
-      const response = await axios.get('http://localhost:1000/user/subscriptiondetails', {
+      const response = await axios.get(`${config.URL}/user/subscriptiondetails`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

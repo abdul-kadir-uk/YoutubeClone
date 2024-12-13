@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import config from '../config'
 
 const Signup = () => {
   // name state 
@@ -68,7 +69,7 @@ const Signup = () => {
 
     try {
       // axios post request for signup 
-      const response = await axios.post("http://localhost:1000/signup", user_data);
+      const response = await axios.post(`${config.URL}/signup`, user_data);
       // when successfully signup 
       if (response.status === 201) {
         alert("Successfully signed up");

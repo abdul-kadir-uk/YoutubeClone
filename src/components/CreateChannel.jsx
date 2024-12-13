@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import config from '../config';
 
 const CreateChannel = ({ isEditing = false }) => {
   // Redux state for sidebar
@@ -34,7 +35,7 @@ const CreateChannel = ({ isEditing = false }) => {
         const token = localStorage.getItem('token');
         try {
           // Make axios get request for getting existing channel data
-          const response = await axios.get(`http://localhost:1000/channel/${id}`, {
+          const response = await axios.get(`${config.URL}/channel/${id}`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
@@ -67,8 +68,8 @@ const CreateChannel = ({ isEditing = false }) => {
     try {
       // check the request is for updataion or creation the channel
       const endpoint = isEditing
-        ? "http://localhost:1000/channel/updatechannel"
-        : "http://localhost:1000/channel/createchannel";
+        ? `${config.URL}/channel/updatechannel`
+        : `${config.URL}/channel/createchannel`;
 
       // HTTP method (PUT for update, POST for create)
       const method = isEditing ? "put" : "post";

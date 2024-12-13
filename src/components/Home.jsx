@@ -4,6 +4,7 @@ import Video from "./Video";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import config from "../config";
 
 const Home = () => {
   // redux state for sidebar
@@ -20,7 +21,7 @@ const Home = () => {
     try {
       setLoading(true);
       // axios get request for get home videos 
-      const response = await axios.get("http://localhost:1000/video/gethomevideos", {
+      const response = await axios.get(`${config.URL}/video/gethomevideos`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -40,7 +41,7 @@ const Home = () => {
     if (!token) return;
     try {
       // axios get request for get video by category 
-      const response = await axios.get(`http://localhost:1000/video/category/${category}`, {
+      const response = await axios.get(`${config.URL}/video/category/${category}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -57,6 +58,7 @@ const Home = () => {
   useEffect(() => {
     getHomeVideos();
   }, []);
+
 
   return (
     <>

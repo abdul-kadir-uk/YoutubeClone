@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import SearchVideoStructure from "./SearchStructure";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import config from "../config";
 
 const SearchVideos = () => {
   // take search text from parameters 
@@ -12,7 +13,7 @@ const SearchVideos = () => {
   const getSearchVideo = async () => {
     try {
       // axios get request for getting videos 
-      const response = await axios.get(`http://localhost:1000/search/${searchText}`);
+      const response = await axios.get(`${config.URL}/search/${searchText}`);
       const data = response.data.videos;
       if (response.status === 404) {
         setVideos([]);
